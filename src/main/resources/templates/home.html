@@ -9,14 +9,20 @@
             <div class="w-full h-[80px] flex justify-between items-center px-[20px] bg-gray-50 absolute top-0 sticky">
                 <div class="flex items-center gap-2">
                     <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-gray-300 box-content">
-                        <svg
-                            class="absolute w-12 h-12 text-gray-400 -left-1"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                        </svg>
+                        <div sec:authorize="hasRole('ADMIN')">
+                            <svg
+                                class="absolute w-12 h-12 text-gray-400 -left-1"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+
+                        <div sec:authorize="hasRole('USER')">
+                            <img src="../templates/img/crown.png" />
+                        </div>
                     </div>
                     <!-- <div th:text="${username}">username</div> -->
                     <!-- <div th:text="${member.username}">username</div> -->
