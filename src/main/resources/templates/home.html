@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+  <title>홈</title>
+</head>
+<body>
+<!--<h1 th:text="${username} + '님 환영합니다!'">환영합니다!</h1>-->
+<!--<h1 th:text="${member.username} + '님 환영합니다!'">환영합니다!</h1>-->
+<!--<h1 th:text="${#authentication.principal.username} + '님 환영합니다!'">환영합니다!</h1>-->
+
+<div th:if="${#authorization.expression('isAuthenticated()')}">
+  <h1 th:text="${#authentication.principal.username} + '님 환영합니다!'">환영합니다!</h1>
+  <p>로그인에 성공하셨습니다.</p>
+  <form th:action="@{/logout}" method="post">
+    <button type="submit">로그아웃</button>
+  </form>
+</div>
+
+<div sec:authorize="isAuthenticated()">
+  로그인 중입니다: <span sec:authentication="name"></span>
+</div>
+
+<div sec:authorize="hasRole('ADMIN')">
+  <div>관리자입니다</div>
+</div>
+
+<div sec:authorize="hasRole('USER')">
+  <div>사용자입니다</div>
+</div>
+
+<div th:if="${#authorization.expression('isAnonymous()')}">
+  <div>로그인 하십쇼</div>
+  <a th:href="@{/login}">로그인</a>
+  <a th:href="@{/signup}">회원가입</a>
+</div>
+
+
+</body>
+</html>
