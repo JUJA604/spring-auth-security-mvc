@@ -1,41 +1,71 @@
 <!DOCTYPE html>
-<html lang="ko"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-  <title>홈</title>
-</head>
-<body>
-<!--<h1 th:text="${username} + '님 환영합니다!'">환영합니다!</h1>-->
-<!--<h1 th:text="${member.username} + '님 환영합니다!'">환영합니다!</h1>-->
-<!--<h1 th:text="${#authentication.principal.username} + '님 환영합니다!'">환영합니다!</h1>-->
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <title>홈</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    </head>
+    <body>
+        <div class="w-full h-screen">
+            <div class="w-full h-[80px] flex justify-between items-center px-[20px] bg-gray-50 absolute top-0 sticky">
+                <div class="flex items-center gap-2">
+                    <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-gray-300 box-content">
+                        <svg
+                            class="absolute w-12 h-12 text-gray-400 -left-1"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <!-- <div th:text="${username}">username</div> -->
+                    <!-- <div th:text="${member.username}">username</div> -->
+                    <div th:text="${#authentication.principal.username}">username</div>
+                </div>
+                <div class="flex items-center">
+                    <form th:action="@{/logout}" method="post">
+                        <button
+                            type="button"
+                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                        >
+                            로그아웃
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="w-full min-h-[calc(100vh-80px)] max-h-[calc(100vh-100px)] bg-gray-200 overflow-y-auto">
+                <div>1</div>
+            </div>
+        </div>
+        <!-- min-h-[calc(100vh-100px)]  -->
+        <!--<h1 th:text="${username} + '님 환영합니다!'">환영합니다!</h1>-->
+        <!--<h1 th:text="${member.username} + '님 환영합니다!'">환영합니다!</h1>-->
+        <!--<h1 th:text="${#authentication.principal.username} + '님 환영합니다!'">환영합니다!</h1>-->
 
-<div th:if="${#authorization.expression('isAuthenticated()')}">
-  <h1 th:text="${#authentication.principal.username} + '님 환영합니다!'">환영합니다!</h1>
-  <p>로그인에 성공하셨습니다.</p>
-  <form th:action="@{/logout}" method="post">
-    <button type="submit">로그아웃</button>
-  </form>
-</div>
+        <!--<div th:if="${#authorization.expression('isAuthenticated()')}">-->
+        <!--  <h1 th:text="${#authentication.principal.username} + '님 환영합니다!'">환영합니다!</h1>-->
+        <!--  <p>로그인에 성공하셨습니다.</p>-->
+        <!--  <form th:action="@{/logout}" method="post">-->
+        <!--    <button type="submit">로그아웃</button>-->
+        <!--  </form>-->
+        <!--</div>-->
 
-<div sec:authorize="isAuthenticated()">
-  로그인 중입니다: <span sec:authentication="name"></span>
-</div>
+        <!--<div sec:authorize="isAuthenticated()">-->
+        <!--  로그인 중입니다: <span sec:authentication="name"></span>-->
+        <!--</div>-->
 
-<div sec:authorize="hasRole('ADMIN')">
-  <div>관리자입니다</div>
-</div>
+        <!--<div sec:authorize="hasRole('ADMIN')">-->
+        <!--  <div>관리자입니다</div>-->
+        <!--</div>-->
 
-<div sec:authorize="hasRole('USER')">
-  <div>사용자입니다</div>
-</div>
+        <!--<div sec:authorize="hasRole('USER')">-->
+        <!--  <div>사용자입니다</div>-->
+        <!--</div>-->
 
-<div th:if="${#authorization.expression('isAnonymous()')}">
-  <div>로그인 하십쇼</div>
-  <a th:href="@{/login}">로그인</a>
-  <a th:href="@{/signup}">회원가입</a>
-</div>
-
-
-</body>
+        <!--<div th:if="${#authorization.expression('isAnonymous()')}">-->
+        <!--  <div>로그인 하십쇼</div>-->
+        <!--  <a th:href="@{/login}">로그인</a>-->
+        <!--  <a th:href="@{/signup}">회원가입</a>-->
+        <!--</div>-->
+    </body>
 </html>
