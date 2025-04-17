@@ -5,18 +5,18 @@
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     </head>
     <body>
-        <div class="w-full h-screen flex justify-center items-center bg-gray-50">
+        <div class="w-full h-screen flex justify-center items-center bg-gray-800">
             <div
-                class="w-[400px] rounded-[10px] flex flex-col gap-[20px] justify-center items-center shadow-[0px_10px_15px_-3px_rgba(0,_0,_0,_0.1)] p-[20px_4px] bg-white"
+                class="w-[400px] rounded-[10px] flex flex-col gap-[20px] justify-center items-center shadow-[0px_10px_15px_-3px_rgba(0,_0,_0,_0.1)] p-[20px_4px] bg-gray-700"
             >
-                <p class="text-4xl font-extrabold text-black">로그인</p>
+                <p class="text-4xl font-extrabold text-white">로그인</p>
                 <form class="w-full" th:action="@{/login}" method="post">
                     <div class="flex flex-col px-5 gap-[10px]">
                         <div>
                             <input
                                 type="text"
                                 name="username"
-                                class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                class="border border-gray-300 bg-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="ID"
                                 required
                             />
@@ -25,7 +25,7 @@
                             <input
                                 type="password"
                                 name="password"
-                                class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                class="border border-gray-300 bg-white text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Password"
                                 required
                             />
@@ -36,7 +36,7 @@
                         </div>
 
                         <button
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none dark:focus:ring-blue-800"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none dark:focus:ring-blue-800"
                         >
                             로그인
                         </button>

@@ -6,10 +6,14 @@
     </head>
     <body>
         <div class="w-full h-screen">
-            <div class="w-full h-[80px] flex justify-between items-center px-[20px] bg-gray-50 absolute top-0 sticky">
+            <div class="w-full h-[80px] flex justify-between items-center px-[20px] bg-gray-950 border-b-[1px] border-b-[#292c32] absolute top-0 sticky">
                 <div class="flex items-center gap-2">
                     <div class="relative w-10 h-10 overflow-hidden bg-gray-100 rounded-full border border-gray-300 box-content">
                         <div sec:authorize="hasRole('ADMIN')">
+                            <img th:src="@{/images/crown.png}" src="../static/images/crown.png" />
+                        </div>
+
+                        <div sec:authorize="hasRole('USER')">
                             <svg
                                 class="absolute w-12 h-12 text-gray-400 -left-1"
                                 fill="currentColor"
@@ -19,28 +23,41 @@
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
-
-                        <div sec:authorize="hasRole('USER')">
-                            <img src="../templates/img/crown.png" />
-                        </div>
                     </div>
                     <!-- <div th:text="${username}">username</div> -->
                     <!-- <div th:text="${member.username}">username</div> -->
-                    <div th:text="${#authentication.principal.username}">username</div>
+                    <div class="text-white" th:text="${#authentication.principal.username}">username</div>
                 </div>
                 <div class="flex items-center">
                     <form th:action="@{/logout}" method="post">
                         <button
-                            type="button"
-                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                            class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5"
                         >
                             로그아웃
                         </button>
                     </form>
                 </div>
             </div>
-            <div class="w-full min-h-[calc(100vh-80px)] max-h-[calc(100vh-100px)] bg-gray-200 overflow-y-auto">
-                <div>1</div>
+            <div class="p-4 w-full min-h-[calc(100vh-80px)] max-h-[calc(100vh-100px)] bg-gray-800 overflow-y-auto">
+                <div class="flex p-4 w-full bg-gray-50 border border-gray-50 rounded-[10px]">
+                    <div class="flex flex-col gap-[8px]">
+                        <div class="flex gap-[10px]">
+                            <div class="w-[80px] font-semibold">아이디</div>
+                            <div th:text="${#authentication.principal.username}">username</div>
+                        </div>
+                        <div class="flex gap-[10px]">
+                            <div class="w-[80px] font-semibold">회원 등급</div>
+                            <div sec:authorize="hasRole('USER')">
+                                <div>사용자</div>
+                            </div>
+                            <div sec:authorize="hasRole('ADMIN')">
+                                <div>관리자</div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
             </div>
         </div>
         <!-- min-h-[calc(100vh-100px)]  -->
