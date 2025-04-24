@@ -23,3 +23,4 @@ Spring - Spring Security를 활용한 MVC 패턴의 회원 인증 기능 구현
   - Spring Data JPA
   - Validation
   - MySQL Driver
+  - Spring Security
